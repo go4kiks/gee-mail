@@ -1,0 +1,42 @@
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  color: #404040;
+  background-color: #eee;
+}
+
+#header{
+	height: 60px;
+}
+
+table.container td{
+    border: none
+}
+
+.labels{
+	font-weight: 500;
+	color: #333333;
+	background-color: #cccccc;
+}
+
+th{
+	border-left-style: solid;
+	border-left-width: 1px;
+	padding: 10px;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+}
+
+#inbox{
+	background-color: #ffffff;
+}
+
+td{
+	border-left-style: solid;
+	border-left-width: 1px;
+	border-left-color: #333333;
+	border-bottom-style: solid;
+	border-bottom-width: 1px;
+	border-bottom-color: #333333;
+	padding: 10px;
+}

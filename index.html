@@ -1,18 +1,125 @@
 <html>
 	<head>
+		<title>GeeMail by KN</title>
 		<script src="js/mail-generator.js"></script>
 		<link href="css/style.css" rel="stylesheet" media="screen">
+		<link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet"> 
     <script>
       window.onload = function(){
         // ALL OF YOUR JAVASCRIPT CODE SHOULD GO HERE. 
         // We have to use window.onload so your JavaScript doesn't execute until the page has loaded and all HTML has been downloaded to your browser
+
+        	for (var i =0; i<window.geemails.length; i++) {
         
+        		var infoRow= document.createElement('tr');
+        		infoRow.className = 'row';
+
+        		var dateContainer= document.createElement('td');
+        		dateContainer.className="date";
+        		dateContainer.innerHTML= geemails[i].date;
+        		infoRow.appendChild(dateContainer);
+
+        		var senderContainer= document.createElement('td');
+        		senderContainer.className = "sender";
+        		senderContainer.innerHTML= geemails[i].sender;
+        		infoRow.appendChild(senderContainer);
+
+        		var subjectContainer= document.createElement('td');
+        		subjectContainer.className="subject";
+        		subjectContainer.innerHTML= geemails[i].subject;
+        		infoRow.appendChild(subjectContainer);
+
+        		infoRow.addEventListener('click', toggleBody);
+        		
+        		var bodyMessage= document.createElement('tr');
+        		bodyMessage.className= 'bodyRow';
+        		var messageContainer= document.createElement('td')
+        		messageContainer.colSpan = "3";
+        		messageContainer.innerHTML= window.geemails[i].body;
+        		bodyMessage.appendChild(messageContainer);
+        		bodyMessage.style.display= 'none';
+
+        		inbox.appendChild(infoRow);
+        		inbox.appendChild(bodyMessage);
+
+        		function toggleBody(){
+        			if (bodyMessage.style.display ==='none'){
+        				bodyMessage.style.display ='block';
+        			}else {
+        				bodyMessage.style.display='none'
+        			};
+        		};
+        	}
+            
+            var inboxCounter = document.createElement('div');
+            inboxCounter.id = "counter";
+            inboxCounter.innerHTML = geemails.length; 
+            count.appendChild(inboxCounter);
+            
+    	function newEmailFetch() {
+    		
+    		var newMessage= getNewMessage();
+    		var newInfoRow= document.createElement ('tr');
+    			newInfoRow.className= 'row';
+
+    		var newDateContainer= document.createElement('td');
+    			newDateContainer.className= 'date';
+    			newDateContainer.innerHTML= newMessage.date;
+
+    		var newSenderContainer = document.createElement('td');
+        		newSenderContainer.className = 'sender';
+        		senderContainer.innerHTML= newMessage.sender;
+
+        	var newSubjectContainer= document.createElement('td');
+        		newSubjectContainer.className='subject';
+        		newSubjectContainer.innerHTML= newMessage.subject;
+
+        newInfoRow.appendChild(newDateContainer);
+        newInfoRow.appendChild(newSenderContainer);
+        newInfoRow.appendChild(newSubjectContainer);
+
+        	var newBodyMessage= document.createElement('tr');
+        	newBodyMessage.className= 'bodyRow';
+        	var newMessageContainer= document.createElement('td')
+        		newMessageContainer.colSpan = "3";
+        		newMessageContainer.innerHTML= newMessage.body;
+        		newBodyMessage.appendChild(newMessageContainer);
+        		newBodyMessage.style.display= 'none';
+
+        		inbox.appendChild(newInfoRow);
+        		inbox.appendChild(newBodyMessage);
+
+        		function toggleBody(){
+        			if (newBodyMessage.style.display ==='none'){
+        				newBodyMessage.style.display ='block';
+        			}else {
+        				newBodyMessage.style.display='none'
+        			};
+        		};
+        	
+            var counts = document.getElementById('count');
+            counts.innerHTML = geemails.length++;
+    	};
+        setInterval(newEmailFetch, 60000);
+
       };
     </script>
 	</head>
 	<body>
 		<div class="container" id="main">
-			Build Me!
+			<table class="container" id="header" align="left">
+				<tr><h1>Welcome to Geemail</h1></tr>
+				<tr><td><h4>Inbox:</td><td><span id="count"></span></h4><td></tr>
+			</table>
+				<table style="width:100%" id="inbox">
+					<tr class="labels">
+					    <th></th>
+						<th>DATE</th>
+						<th>SENDER</th>
+						<th>SUBJECT</th>
+					</tr>
+				</table>
 		</div>
+
 	</body>
 </html>
